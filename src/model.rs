@@ -44,6 +44,11 @@ impl Note {
         self.key.as_ref()
     }
 
+    pub fn set_create(mut self, seconds: f64) -> Note {
+        self.createdate = Some(seconds);
+        self
+    }
+
     pub fn set_modified(&mut self) -> Result<()> {
         let now = SystemTime::now().duration_since(UNIX_EPOCH).chain_err(|| "Could not get duration since unix epoch")?;
         let now = now.as_secs();
